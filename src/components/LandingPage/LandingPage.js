@@ -61,6 +61,7 @@ export default class LandingPage extends Component {
                     <form onSubmit={ev => this.handleSubmit(ev)}>
                         <label htmlFor="name">What's your name ?</label>
                         <input placeholder="Art Vandelay" name="name" id="name"></input>
+                        <br/>
                         <button type="submit" className="adoptButton">Find a friend</button>
                     </form>
                     <img

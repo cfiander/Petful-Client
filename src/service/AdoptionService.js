@@ -1,6 +1,6 @@
 import config from '../config'
 import { queueArray } from '../helpers/helpers'
-import AdoptionContext from '../context/AdoptionContext'
+
 
 const AdoptionService = {
     createUser(name) {
