@@ -1,15 +1,30 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import AdoptionService from '../../service/AdoptionService'
-import AdoptionContext from '../../context/AdoptionContext';
-import './AdoptionLinePage.css';
 
-export default class AdoptionPage extends Component {
 
+
+export default class AdoptionLinePage extends Component {
+    state = {
+        cats: [],
+        dogs: []
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+        AdoptionService.catsInLine()
+            .then(cats => {
+                this.setState({ cats })
+            })
+        AdoptionService.dogsInLine()
+            .then(dogs => {
+                this.setState({ dogs })
+            })
+        }, 500)
+    }
 
     renderCats() {
-        const {catsInLine = []} = this.context
-        const list = catsInLine.map((cat, i) => {
+        const {cats = []} = this.state
+        const list = cats.map((cat, i) => {
             return <li key={i}>
                 <img src={cat.imageURL} alt="dogimage"></img>
                 <p>Name: {cat.name}</p>
@@ -21,8 +36,8 @@ export default class AdoptionPage extends Component {
             </li>
         })
         return (
-            <div className="descriptionLine">
-            <ul>
+            <div className="descriptionLine cat">
+            <ul className="details">
                 {list}
             </ul>
             </div>
@@ -30,8 +45,8 @@ export default class AdoptionPage extends Component {
     }
 
     renderDogs() {
-        const {dogsInLine = []} = this.context
-        const list = dogsInLine.map((dog, i) => {
+        const {dogs = []} = this.state
+        const list = dogs.map((dog, i) => {
             return <li key={i}>
                 <img src={dog.imageURL} alt="dogimage"></img>
                 <p>Name: {dog.name}</p>
@@ -43,13 +58,15 @@ export default class AdoptionPage extends Component {
             </li>
         })
         return (
-            <div className="descriptionLine">
-            <ul>
+            <div className="descriptionLine dog">
+            <ul className="details">
                 {list}
             </ul>
             </div>
         )
     }
+
+    
 
     render() {
         return (

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AdoptionService from '../../service/AdoptionService'
 import AdoptionContext from '../../context/AdoptionContext';
+import { Link } from 'react-router-dom'
 
 export default class AdoptionPage extends Component {
     static defaultProps = {
@@ -69,8 +70,8 @@ export default class AdoptionPage extends Component {
             .then(res =>
                 AdoptionService.removePerson()
                     .then(users => {
-                        this.context.setPeople(res.users)
-                        this.props.history.push('/adopted');
+                        this.context.setPeople(users)
+                        window.location.reload(false);
                     })
             )
             .catch(error => console.error(error));
@@ -85,8 +86,8 @@ export default class AdoptionPage extends Component {
             .then(res =>
                 AdoptionService.removePerson()
                     .then(users => {
-                        this.context.setPeople(res.users)
-                        this.props.history.push('/adopted');
+                        this.context.setPeople(users)
+                        window.location.reload(false);
                     })
             )
             .catch(error => console.error(error));
@@ -96,16 +97,8 @@ export default class AdoptionPage extends Component {
         AdoptionService.cutLine()
             .then(user => {
                 this.context.setPeople(user)
-                // window.location.reload(false);
+                window.location.reload(false);
             })
-    }
-
-    seeMore = () => {
-        AdoptionService.getInLine()
-        .then(data => {
-            console.log(data)
-        })
-            
     }
 
     peopleAhead = () => {
@@ -134,8 +127,6 @@ export default class AdoptionPage extends Component {
                     </ul>
                     <p>There are {this.peopleAhead()} people ahead of you in line</p>
                     <button type="click" onClick={() => this.cutLine()} className="adoptButton">Cut the line</button>
-                    <br />
-                    <button type="submit" onClick={() => this.seeMore()} className="adoptButton">See more pets</button>
                 </div>
             </div>
         )

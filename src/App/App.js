@@ -3,7 +3,8 @@ import { Route, Switch, Link} from 'react-router-dom'
 import LandingRoute from '../routes/LandingRoute/LandingRoute'
 import './App.css';
 import AdoptionRoute from '../routes/AdoptionRoute/AdoptionRoute'
-import AdoptionLinePage from '../components/AdoptionLinePage/AdoptionLinePage'
+import LineRoute from '../routes/AdoptionLine/LineRoute'
+import AdoptedRoute from '../routes/Adopted/AdoptedRoute'
 
 
 function App() {
@@ -31,7 +32,12 @@ function App() {
           <Route
             exact
             path={'/adoptionline'}
-            component={AdoptionLinePage}
+            component={LineRoute}
+          />
+          <Route
+            exact
+            path={'/adopted'}
+            component={AdoptedRoute}
           />
         </Switch>
       </main>

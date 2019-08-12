@@ -18,7 +18,6 @@ export default class LandingPage extends Component {
         window.localStorage.setItem("name", name)
         AdoptionService.createUser(name)
             .then(name => {
-                console.log(name)
                 this.context.setUser(name)
                 this.props.onSubmit()
             })

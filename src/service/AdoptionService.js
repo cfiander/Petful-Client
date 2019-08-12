@@ -109,49 +109,52 @@ const AdoptionService = {
                 return queueArray(data)
             })
     },
-    // catsInLine() {
-    //     return fetch(`${config.API_ENDPOINT}/cats/inline`, {
-    //         headers: {
-    //         },
-    //     })
-    //         .then(res =>
-    //             (!res.ok)
-    //                 ? res.json().then(e => Promise.reject(e))
-    //                 : res.json()
-    //         )
-    //         .then(data => {
-    //             return queueArray(data)
-    //         })
-    // },
-    // dogsInLine() {
-    //     return fetch(`${config.API_ENDPOINT}/dogs/inline`, {
-    //         headers: {
-    //         },
-    //     })
-    //         .then(res =>
-    //             (!res.ok)
-    //                 ? res.json().then(e => Promise.reject(e))
-    //                 : res.json()
-    //         )
-    //         .then(data => {
-    //             return queueArray(data)
-    //         })
-    // },
-    getInLine() {
-    Promise.all([
-        fetch(`${config.API_ENDPOINT}/dogs/inline`),
-        fetch(`${config.API_ENDPOINT}/cats/inline`)
-      ])
-        .then(([dogsRes, catsRes]) => {
-          if (!dogsRes.ok) return dogsRes.json().then(e => Promise.reject(e));
-          if (!catsRes.ok) return catsRes.json().then(e => Promise.reject(e));
-  
-          return Promise.all([dogsRes.json(), catsRes.json()]);
+    catsInLine() {
+        return fetch(`${config.API_ENDPOINT}/cats/inline`, {
+            headers: {
+            },
         })
-        .then(([dogData, catData]) => {
-            console.log([queueArray(dogData), queueArray(catData)])
-            return Promise.all([queueArray(dogData), queueArray(catData)]);
-        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+            .then(data => {
+                const cats = queueArray(data)
+                cats.shift()
+                return cats
+            })
     },
+    dogsInLine() {
+        return fetch(`${config.API_ENDPOINT}/dogs/inline`, {
+            headers: {
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+            .then(data => {
+                const dogs = queueArray(data)
+                dogs.shift()
+                return dogs
+            })
+    },
+    getAdoptedAnimals() {
+        return fetch(`${config.API_ENDPOINT}/adopted`, {
+            headers: {
+            },
+        })
+            .then(res =>
+                (!res.ok)
+                    ? res.json().then(e => Promise.reject(e))
+                    : res.json()
+            )
+            .then(data => {
+                return data
+            })
+    },
+
 }
 export default AdoptionService

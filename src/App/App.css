@@ -69,7 +69,6 @@ section {
   box-shadow: 5px 5px 10px;
   padding-top: 0;
   text-align: center;
-
 }
 
 
@@ -144,14 +143,17 @@ img {
 
 .adoptButton {
   text-align:center;
+  text-decoration: none;
   text-transform: uppercase;
   font-variant: small-caps;
   height: 30px;
   width: 50%;
   margin-top: 2.5%;
   margin-bottom: 2.5%;
-  font-size: 100%;
-  background-color: #e6e6fa;
+  font-size: 75%;
+  border: solid 1px;
+  padding: 1%;
+  color: #444;
 }
 
 .adoptButton:hover {
@@ -171,7 +173,9 @@ label {
   background-color: whitesmoke;
   border: solid 1px;
   border-radius: 5px;
+  padding-bottom: 20px;
   margin-top: 2.5%;
+  margin-bottom: 0;
   box-shadow: 5px 5px 10px;
   padding-top: 0;
   text-align: center;
@@ -184,7 +188,9 @@ label {
   background-color: whitesmoke;
   border: solid 1px;
   border-radius: 5px;
+  padding-bottom: 20px;
   margin-top: 2.5%;
+  margin-bottom: 0;
   box-shadow: 5px 5px 10px;
   padding-top: 0;
   text-align: center;
@@ -195,11 +201,14 @@ label {
   margin: 0 auto;
 }
 
+
+
+
+
 .adoptionPage {
   margin: 0 auto;
   min-height: 200px;
   padding: 2% 0;
-  padding-bottom: 10%;
   background-color: rgb(163, 237, 237);
   padding-top: 0;
   text-align: center;
@@ -208,14 +217,13 @@ label {
 @media only screen and (min-width: 1025px) {
   .adoptionPage {
     display: flex;
-    /* flex-direction: row; */
-    /* justify-content: space-between; */
+  }
+  .descriptionLine {
+    width: 45%;
   }
   .description {
     width: 32%;
-  }
-  .descriptionLine {
-    width: 49%;
+    max-width: 500px;
   }
   .people {
     order: 2;

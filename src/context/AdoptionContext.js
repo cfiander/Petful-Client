@@ -73,27 +73,22 @@ export class AdoptionProvider extends Component {
     }
 
     setPlace = number => {
-        console.log(number)
-        console.log(this.state.place)
         this.setState({place: number})
     }
 
     setPeople = people => {
-        console.log(people)
         this.setState({
             people
         })
     }
 
     setDogsInLine = dogsInLine => {
-        console.log(dogsInLine)
         this.setState({
             dogsInLine: dogsInLine
         })
     }
 
     setCatsInLine = catsInLine => {
-        console.log(catsInLine)
         this.setState({
             catsInLine: catsInLine
         })
