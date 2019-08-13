@@ -235,3 +235,8 @@ label {
     order: 3;
   }
 }
+
+.linePets{
+  border: solid #444 1px;
+  padding: 2%;
+}

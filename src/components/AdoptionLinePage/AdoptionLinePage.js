@@ -47,7 +47,7 @@ export default class AdoptionLinePage extends Component {
     renderDogs() {
         const {dogs = []} = this.state
         const list = dogs.map((dog, i) => {
-            return <li key={i}>
+            return <li key={i} className="linePets">
                 <img src={dog.imageURL} alt="dogimage"></img>
                 <p>Name: {dog.name}</p>
                 <p>Sex: {dog.sex}</p>
