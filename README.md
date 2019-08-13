@@ -14,7 +14,7 @@ One which adopts the cat at the top of their line, and the other, which adopts t
 https://chris-petful-client.cfiander90.now.sh/adopt
 
 ## Screenshots
-![LandingPage](assets/Screen Shot 2019-08-12 at 7.37.58 PM.png)
+![LandingPage]('./assets/Screen Shot 2019-08-12 at 7.37.58 PM.png')
 
 ## Available Scripts
 
