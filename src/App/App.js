@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Switch, Link} from 'react-router-dom'
 import LandingRoute from '../routes/LandingRoute/LandingRoute'
 import './App.css';
-import AdoptionRoute from '../routes/AdoptionRoute/AdoptionRoute'
-import LineRoute from '../routes/AdoptionLine/LineRoute'
-import AdoptedRoute from '../routes/Adopted/AdoptedRoute'
+import AdoptionRoute from '../routes/AdoptionRoute/AdoptionRoute';
+import LineRoute from '../routes/AdoptionLine/LineRoute';
+import AdoptedRoute from '../routes/Adopted/AdoptedRoute';
 
 
 function App() {
