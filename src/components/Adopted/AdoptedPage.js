@@ -18,7 +18,7 @@ export default class AdoptedPage extends Component {
     renderAdopted() {
         const {adopted = []} = this.state
         const list = adopted.map((adopted, i) => {
-            return <li key={i}>
+            return <li key={i} className="linePets">
                 <img src={adopted.imageURL} alt="adoptedanimal"></img>
                 <p>Name: {adopted.name}</p>
                 <p>Sex: {adopted.sex}</p>
