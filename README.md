@@ -1,6 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Description of App
+This is the client for Petful and goes with the server here: https://github.com/cfiander/Petful-Server.
 Petful is a web app for an animal shelter that only allows visitors to adopt animals that have been in the
 the shelter the longest. That means only one cat and one dog is available to adopt at any given time. 
 Users are also only allowed to adopt an animal if they are at the front of the line. 
@@ -13,8 +14,18 @@ One which adopts the cat at the top of their line, and the other, which adopts t
 ## Live Link to App
 https://chris-petful-client.cfiander90.now.sh/adopt
 
-## Screenshots
-![LandingPage](/assets/Screen Shot 2019-08-12 at 7.37.58 PM.png)
+## TechStack
+
+Overall:
+   React JS
+
+Dependencies: 
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1"
+
+
 
 ## Available Scripts
 
