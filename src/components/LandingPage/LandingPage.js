@@ -1,3 +1,12 @@
+// Petful is a web app for an animal shelter that only allows visitors to adopt animals that have been in the
+// the shelter the longest. That means only one cat and one dog is available to adopt at any given time. 
+// Users are also only allowed to adopt an animal if they are at the front of the line. 
+// Users can see see their place in line in a center block. For the purposes of demonstration the app has a button to 'cut the line'
+// Users can move to a page and see the other animals in the shelter, which are in line for a turn to be adopted.
+// Users can move to page to see a list of all the animals that have been adopted. 
+// When a user is at the front of the line and on the main `/adopt' page, they can push one of two adopt buttons.
+// One which adopts the cat at the top of their line, and the other, which adopts the dog at the head of the dog line.
+
 import React, { Component } from 'react'
 import AdoptionService from '../../service/AdoptionService'
 import AdoptionContext from '../../context/AdoptionContext';

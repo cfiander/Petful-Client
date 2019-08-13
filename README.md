@@ -1,5 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Description of App
+Petful is a web app for an animal shelter that only allows visitors to adopt animals that have been in the
+the shelter the longest. That means only one cat and one dog is available to adopt at any given time. 
+Users are also only allowed to adopt an animal if they are at the front of the line. 
+Users can see see their place in line in a center block. For the purposes of demonstration the app has a button to 'cut the line'
+Users can move to a page and see the other animals in the shelter, which are in line for a turn to be adopted.
+Users can move to page to see a list of all the animals that have been adopted. 
+When a user is at the front of the line and on the main `/adopt' page, they can push one of two adopt buttons.
+One which adopts the cat at the top of their line, and the other, which adopts the dog at the head of the dog line.
+
+## Live Link to App
+https://chris-petful-client.cfiander90.now.sh/adopt
+
+## Screenshots
+![LandingPage](assets/Screen Shot 2019-08-12 at 7.37.58 PM.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
