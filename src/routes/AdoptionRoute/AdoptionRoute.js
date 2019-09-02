@@ -10,9 +10,9 @@ export default class AdoptionRoute extends Component {
         },
     }
 
-    seeMore = () => {
+    onAdopt = () => {
         const { history } = this.props
-        history.push('/adoptionline')
+        history.push('/adopted')
     }
 
     render() {
@@ -20,7 +20,7 @@ export default class AdoptionRoute extends Component {
             <>
                 <h2>Adopt Here</h2>
                 <div className="adoptionPage">
-                    <AdoptionPage seeMore={this.seeMore} />
+                    <AdoptionPage onAdopt={this.onAdopt} />
                 </div>
                 <section>
                     <br/>

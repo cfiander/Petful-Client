@@ -25,6 +25,7 @@ export default class LandingPage extends Component {
             name = ev.target['name'].value
         }
         window.localStorage.setItem("name", name)
+        window.localStorage.setItem("adoptionStatus", "freeToAdopt")
         AdoptionService.createUser(name)
             .then(name => {
                 this.context.setUser(name)
@@ -46,7 +47,7 @@ export default class LandingPage extends Component {
                         className="landingImage"
                     />
                     <p>
-                        We are a first come first serve and first in first out
+                        We are a first come, first serve and first in, first out
                         animal shelter.
                     </p>
                     <img
@@ -64,14 +65,14 @@ export default class LandingPage extends Component {
                         alt="catanddog"
                         className="landingImage"
                     />
-                    <p>By clicking on the adopt button, you'll be able to see your place in line
+                    <p>By clicking on the 'Find a Friend' button, you'll be able to see your place in line
                         as well as the gender, age, and breed of the cat and dog that are currently up for adoption.
                     </p>
                     <form onSubmit={ev => this.handleSubmit(ev)}>
                         <label htmlFor="name">What's your name ?</label>
                         <input placeholder="Art Vandelay" name="name" id="name"></input>
                         <br/>
-                        <button type="submit" className="adoptButton">Find a friend</button>
+                        <button type="submit" className="adoptButton">Find a Friend</button>
                     </form>
                     <img
                         src={'http://pluspng.com/img-png/png-hd-dogs-and-cats-pet-dogs-and-cats-pet-dog-cat-free-png-image-650.jpg'}

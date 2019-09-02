@@ -17,6 +17,7 @@ export default class AdoptedPage extends Component {
 
     renderAdopted() {
         const {adopted = []} = this.state
+        const name = window.localStorage.name
         const list = adopted.map((adopted, i) => {
             return <li key={i} className="linePets">
                 <img src={adopted.imageURL} alt="adoptedanimal"></img>
@@ -25,7 +26,7 @@ export default class AdoptedPage extends Component {
                 <p>Age: {adopted.age}</p>
                 <p>Breed: {adopted.breed}</p>
                 <p>Story: {adopted.story}</p>
-                <p>Description: They've been adopted!</p>
+                <p>Description: They've been adopted by {name}!</p>
             </li>
         })
         return (

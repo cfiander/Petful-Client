@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom'
 
 export default class AdoptionPage extends Component {
     static defaultProps = {
-        cuttingLine: () => { }
+        cuttingLine: () => { },
+        onAdopt: () => { },
+    }
+
+    state = {
+        allDogsAdopted: false,
+        allCatsAdopted: false,
     }
 
     static contextType = AdoptionContext
@@ -14,27 +20,37 @@ export default class AdoptionPage extends Component {
         setTimeout(() => {
             AdoptionService.getPeople()
                 .then(res => {
-                    console.log(res)
                     this.context.setPeople(res)
-                    console.log(this)
                 })
                 .catch(error => {
                     console.log(error)
                 })
             AdoptionService.getDogs()
                 .then(dogs => {
-                    this.context.setDogs(dogs)
-                    this.context.setFirstDog(dogs.first.data)
+                    console.log(dogs)
+                    if (!dogs.first) {
+                        this.setState({ allDogsAdopted: true })
+                    } else if (dogs.first && dogs.first.next) {
+                        this.context.setDogs(dogs)
+                        this.context.setFirstDog(dogs.first.data)
+                    } else {
+                        this.context.setFirstDog(dogs.first.data)
+                    }
                 })
                 .catch(error => {
                     console.log(error)
                 })
             AdoptionService.getCats()
                 .then(cats => {
-                    this.context.setCats(cats)
-                    this.context.setFirstCat(cats.first.data)
+                    if (!cats.first) {
+                        this.setState({ allCatsAdopted: true })             
+                    } else if (cats.first && cats.first.next) {
+                        this.context.setCats(cats)
+                        this.context.setFirstCat(cats.first.data)
+                    } else {
+                        this.context.setFirstCat(cats.first.data)
+                    }
                     this.findPlaceInLine()
-                    console.log(this.context)
                 })
                 .catch(error => {
                     console.log(error)
@@ -46,12 +62,8 @@ export default class AdoptionPage extends Component {
     findPlaceInLine = () => {
         let place = 1;
         const { people = [] } = this.context
-        console.log(place)
         const name = window.localStorage.getItem('name');
         people.forEach((person, i) => {
-            console.log(person)
-            console.log(i)
-            console.log(name)
             if (person.name === name) {
                 this.context.setPlace({ place });
                 return;
@@ -63,15 +75,12 @@ export default class AdoptionPage extends Component {
 
     adoptDog = () => {
         AdoptionService.adoptDog()
-            .then(dogs => {
-                this.context.setDogs(dogs)
-                this.context.setFirstDog(dogs.first.data)
-            })
-            .then(res =>
+            .then(() =>
                 AdoptionService.removePerson()
                     .then(users => {
                         this.context.setPeople(users)
-                        window.location.reload(false);
+                        window.localStorage.setItem("adoptionStatus", "adopted")
+                        this.props.onAdopt()
                     })
             )
             .catch(error => console.error(error));
@@ -79,15 +88,12 @@ export default class AdoptionPage extends Component {
 
     adoptCat = () => {
         AdoptionService.adoptCat()
-            .then(cats => {
-                this.context.setCats(cats)
-                this.context.setFirstCat(cats.first.data)
-            })
-            .then(res =>
+            .then(() =>
                 AdoptionService.removePerson()
                     .then(users => {
                         this.context.setPeople(users)
-                        window.location.reload(false);
+                        window.localStorage.setItem("adoptionStatus", "adopted")
+                        this.props.onAdopt()
                     })
             )
             .catch(error => console.error(error));
@@ -141,7 +147,7 @@ export default class AdoptionPage extends Component {
             <>
                 <div className="description dogs">
                     <div className="details">
-                        <button type="button" disabled={this.context.place !== 1} onClick={() => this.adoptDog()} className="adoptButton">Adopt</button>
+                        <button type="button" disabled={this.context.place !== 1 || window.localStorage.adoptionStatus === 'adopted'} onClick={() => this.adoptDog()} className="adoptButton">Adopt</button>
                         <br />
                         <img src={firstDog.imageURL} alt="dogimage"></img>
                         <p>Name: {firstDog.name}</p>
@@ -163,7 +169,7 @@ export default class AdoptionPage extends Component {
             <>
                 <div className="description cats">
                     <div className="details">
-                        <button type="button" disabled={this.context.place !== 1} onClick={() => this.adoptCat()} className="adoptButton">Adopt</button>
+                        <button type="button" disabled={this.context.place !== 1 || window.localStorage.adoptionStatus === 'adopted'} onClick={() => this.adoptCat()} className="adoptButton">Adopt</button>
                         <br />
                         <img src={firstCat.imageURL} alt="dogimage"></img>
                         <p>Name: {firstCat.name}</p>
@@ -178,12 +184,51 @@ export default class AdoptionPage extends Component {
         )
     }
 
+    renderYouveAdopted() {
+        return (
+            <div className="description people">
+                <h2>You already adopted a pet {window.localStorage.name}! Don't get greedy!</h2>
+                <br />
+                <br />
+                <p>...maybe try a different name...</p>
+                <Link to={`/`}>&#8592;</Link>
+            </div>
+        )
+    }
+
+    renderAllDogsAdopted() {
+        return (
+            <div className="description dogs">
+                <h2>Wow, all the dogs are adopted!</h2>
+                <br />
+                <br />
+                <p>Take a look at them here</p>
+                <Link to={`/adopted`}>🐶</Link>
+            </div>
+        )
+    }
+
+    renderAllCatsAdopted() {
+        return (
+            <div className="description cats">
+                <h2>Wow, all the cats are adopted!</h2>
+                <br />
+                <br />
+                <p>Take a look at them here</p>
+                <Link to={`/adopted`}>🐱</Link>
+            </div>
+        )
+    }
+
     render() {
         return (
             <>
-                {this.renderPeople()}
-                {this.renderDog()}
-                {this.renderCat()}
+                {window.localStorage.adoptionStatus === 'adopted' && this.renderYouveAdopted()}
+                {window.localStorage.adoptionStatus !== 'adopted' && this.renderPeople()}
+                {this.state.allDogsAdopted && this.renderAllDogsAdopted()}
+                {this.state.allCatsAdopted && this.renderAllCatsAdopted()}
+                {!this.state.allDogsAdopted && this.renderDog()}
+                {!this.state.allCatsAdopted && this.renderCat()}
             </>
         )
     }

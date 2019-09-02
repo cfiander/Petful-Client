@@ -137,6 +137,7 @@ const AdoptionService = {
             )
             .then(data => {
                 const dogs = queueArray(data)
+                console.log(dogs)
                 dogs.shift()
                 return dogs
             })

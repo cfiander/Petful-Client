@@ -24,6 +24,7 @@ export default class AdoptionLinePage extends Component {
 
     renderCats() {
         const {cats = []} = this.state
+        const noCats = <h2>There are no cats in line</h2>
         const list = cats.map((cat, i) => {
             return <li key={i} className="linePets">
                 <img src={cat.imageURL} alt="dogimage"></img>
@@ -37,8 +38,10 @@ export default class AdoptionLinePage extends Component {
         })
         return (
             <div className="descriptionLine cat">
+            <h2 className="lineTitle">Cats</h2>
             <ul className="details">
-                {list}
+                {this.state.cats.length > 0 && list}
+                {this.state.cats.length === 0 && noCats}
             </ul>
             </div>
         )
@@ -46,6 +49,7 @@ export default class AdoptionLinePage extends Component {
 
     renderDogs() {
         const {dogs = []} = this.state
+        const noDogs = <h2>There are no dogs in line</h2>
         const list = dogs.map((dog, i) => {
             return <li key={i} className="linePets">
                 <img src={dog.imageURL} alt="dogimage"></img>
@@ -59,8 +63,10 @@ export default class AdoptionLinePage extends Component {
         })
         return (
             <div className="descriptionLine dog">
+            <h2 className="lineTitle">Dogs</h2>
             <ul className="details">
-                {list}
+                {this.state.dogs.length > 0 && list}
+                {this.state.dogs.length === 0 && noDogs}
             </ul>
             </div>
         )

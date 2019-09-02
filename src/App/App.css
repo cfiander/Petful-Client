@@ -240,3 +240,7 @@ label {
   border: solid #ffb7b2 1px;
   padding: 2%;
 }
+
+.lineTitle {
+  text-decoration: underline;
+}
